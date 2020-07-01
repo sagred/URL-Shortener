@@ -15,6 +15,14 @@ router.get('/:surl', (req, res) => {
        .catch(err => res.status(400).json('Error:' + err))
 })
 
+router.get('/find/:surl', (req, res) => {
+    URL.findOne({shortUrl:{$eq:req.params.surl}})
+       .then(data => {
+           res.json(data.shortUrl);
+       })
+       .catch(err => res.status(400).json('Error:' + err))
+})
+
 router.post('/', (req, res) => {
     const url = req.body.url;
     const shortUrl = req.body.shortUrl;
