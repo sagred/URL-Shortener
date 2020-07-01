@@ -14,8 +14,8 @@ connection.once('open', () => {
     console.log("MongoDB connection established successfully...")
 })
 
-const main = require('./main')
-app.use('/', main)
+const mainRoute = require('./mainRoute')
+app.use('/', mainRoute)
 
 app.listen(3000, () => {
     console.log("Listening")
