@@ -10,7 +10,7 @@ router.get('/', (req, res) => {
 })
 
 router.get('/:surl', (req, res) => {
-    URL.findOne(shortUrl = req.params.surl)
+    URL.findOne(req.params.surl)
        .then(data => console.log(data.url))
        .catch(err => res.status(400).json('Error:' + err))
 })
