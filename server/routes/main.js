@@ -10,18 +10,16 @@ router.get('/', (req, res) => {
 })
 
 router.get('/:surl', (req, res) => {
-    URL.findOne(req.params.surl)
-       .then(data => console.log(data.url))
+    URL.findOne({shortUrl:{$eq:req.params.surl}})
+       .then(data => res.redirect(data.url))
        .catch(err => res.status(400).json('Error:' + err))
 })
 
 router.post('/', (req, res) => {
     const url = req.body.url;
     const shortUrl = req.body.shortUrl;
-    const urlId = req.body.urlId;
-
     
-    const newUrl = new URL({url,shortUrl,urlId})
+    const newUrl = new URL({url,shortUrl})
     newUrl.save()
           .then(() => res.json('URL ADDED'))
           .catch(err => res.status(400).json("ERROR:" + err))
