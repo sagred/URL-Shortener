@@ -9,7 +9,7 @@ const port = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
-const uri = 'mongodb+srv://sagred:sagred@cluster0-uxhzz.gcp.mongodb.net/blog?retryWrites=true&w=majority'
+const uri = '<YOUR MONGODB URI>'
 mongoose.connect(uri,{ useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true })
 const connection = mongoose.connection;
 connection.once('open', () => {
