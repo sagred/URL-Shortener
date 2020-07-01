@@ -1,24 +1,20 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1 className = 'heading'>URL SHORTENER</h1>
+      <form className = 'form'>
+        <label className = 'urlLabel'>Enter URL: </label>
+        <input className = 'urlInput' placeholder = 'Enter URL to shorten...' type = ''url required autoFocus/>
+        <label className = 'shortUrlLabel'>Enter Short URL: </label>
+        <input className = 'shortUrlInput' placeholder = 'Enter Shorter URL ...' type = ''url required/>
+        <button className = 'formSubmit'>Submit</button>
+      </form>
+      <div className = 'linkList'>
+        <a href = '#'>http://sagred.tech</a>
+      </div>
     </div>
   );
 }
