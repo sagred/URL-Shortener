@@ -8,11 +8,8 @@ const urlScheme = new Schema({
     },
     shortUrl:{
         type:String,
-        required:true
-    },
-    urlId:{
-        type:String,
-        required:true
+        required:true,
+        unique:true
     }
 },{
     timestamps:true
