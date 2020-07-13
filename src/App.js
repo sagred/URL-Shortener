@@ -1,6 +1,13 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import axios from 'axios'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 import './App.css';
+import RedirectPage from './redirect';
 
 function App() {
 
@@ -11,7 +18,7 @@ function App() {
   const [error, setError] = useState(false)
 
 
-  const uri = 'http://localhost:5000/'
+  const uri = 'http://localhost:5000'
 
   const shortenURL = (e) => {
     e.preventDefault();
@@ -23,14 +30,14 @@ function App() {
     axios.post(uri,urldata)
          .then(res => console.log(res.data))
          .catch(err => console.log('Error:' + err))
-         .then(sRurl(uri + surl),setList(true))
+         .then(sRurl('/' + surl),setList(true))
          .then(setUrl(''),setSurl(''))
   }
 
   const verification = (e) => {
     setSurl(e.target.value)
     let value = e.target.value
-     axios.get(uri+'find/'+ e.target.value)
+     axios.get(uri+'/find/'+ e.target.value)
          .then(res => {
             if(res.data === value) {
               setError(true)
@@ -64,11 +71,17 @@ function App() {
         
         <button className = 'formSubmit'>Submit</button>
       </form>
-      {list?<div className = 'linkList'>
-      
-        <h3 className = 'listurl'>Your short URL is :{rurl}</h3>
+      <Router>
+     {list?<div className = 'linkList'>
+          <Link to={rurl} className = 'listurl'>{uri}{rurl}</Link>
       </div>
       :null}
+        <Switch>
+            <Route path="/:surl">
+              <RedirectPage />
+            </Route>
+        </Switch>
+      </Router>
     </div>
   );
 }

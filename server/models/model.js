@@ -7,9 +7,9 @@ const urlScheme = new Schema({
         required:true
     },
     shortUrl:{
+        unique:true,
         type:String,
-        required:true,
-        unique:true
+        required:true
     }
 },{
     timestamps:true

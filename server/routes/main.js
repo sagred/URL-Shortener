@@ -11,7 +11,7 @@ router.get('/', (req, res) => {
 
 router.get('/:surl', (req, res) => {
     URL.findOne({shortUrl:{$eq:req.params.surl}})
-       .then(data => res.redirect(data.url))
+       .then(data => res.json(data.url))
        .catch(err => res.status(400).json('Error:' + err))
 })
 
